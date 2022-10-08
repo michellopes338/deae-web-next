@@ -28,8 +28,8 @@ export function Input({name, label, ...rest}: Props) {
 
   return (
     <div className="col-md-4">
-      <label htmlFor="validationCustom01" className="form-label">{label}</label>
-      <input type="text" ref={inputRef} {...rest} defaultValue={defaultValue} className="form-control" id="validationCustom01" required />
+      <label htmlFor={label} className="form-label">{label}</label>
+      <input type="text" ref={inputRef} {...rest} defaultValue={defaultValue} className="form-control" id={label} />
       <div className="invalid-feedback">
         {error}
       </div>

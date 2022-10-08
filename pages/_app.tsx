@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      {router.pathname !== '/login' ? <Menu /> : ''}
+      {router.pathname in ['/login', '/cria-conta'] ? <Menu /> : ''}
       <Component {...pageProps} />
     </>
   )
