@@ -7,7 +7,7 @@ const refresh_token = new RefreshToken();
 const router = Router;
 const api = axios.create({
   baseURL: 'https://deae-michel.herokuapp.com/',
-  timeout: 12000,
+  timeout: 2000,
   headers: {
     'Content-Type': 'application/json',
     'Authorization': access_token.getToken() && `Bearer ${access_token.getToken()}`,
