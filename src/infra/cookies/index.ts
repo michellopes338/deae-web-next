@@ -1,4 +1,5 @@
 import { setCookie, destroyCookie, parseCookies } from 'nookies';
+import jwtDecode from 'jwt-decode';
 
 abstract class Tokens {
   private readonly TOKEN_PATH;
@@ -26,6 +27,10 @@ abstract class Tokens {
 export class AccessToken extends Tokens {
   constructor() {
     super('sdfjiosdjfiosdjfiodjssdfs')
+  }
+
+  handleJWT(): {role: string} {
+    return jwtDecode(this.getToken())
   }
 }
 

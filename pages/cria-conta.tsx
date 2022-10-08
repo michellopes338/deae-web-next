@@ -18,7 +18,7 @@ export default function CreateAccount() {
           <Input name="confirmPassword" type="password" label="confirme sua senha" className="my-2" />
 
           <div className="d-grid">
-            <button className="btn btn-primary my-2">logar</button>
+            <button className="btn btn-primary my-2">criar conta</button>
           </div>
           <span>já tem uma conta? 
             <Link href="/login" prefetch={false}>

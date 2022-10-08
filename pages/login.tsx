@@ -42,7 +42,7 @@ export default function Login() {
         .catch(err => {
           console.log(err);
         })
-      Router.replace('/')
+      router.replace('/')
     } catch(err) {
       const validationErrors: any = {};
       if (err instanceof Yup.ValidationError) {
