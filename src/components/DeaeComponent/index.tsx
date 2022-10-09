@@ -2,7 +2,7 @@ import { IDeae } from "../../interface/deaes.interface";
 
 export function DeaeComponent(deae: IDeae) {
   return (
-    <div key={deae.id} className="card my-3">
+    <div key={deae.id} className="card my-3 text-dark">
       <div className="card-header">
         <strong>nome</strong>: {deae.user.username}
       </div>
