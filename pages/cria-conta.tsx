@@ -6,7 +6,7 @@ import { Input } from "../src/components/Input";
 import * as Yup from 'yup';
 import classNames from "classnames";
 import { api } from "../src/infra/api";
-import Router from "next/router";
+import { useRouter } from "next/router";
 
 interface Props {
   username: string;
@@ -17,9 +17,9 @@ interface Props {
 
 export default function CreateAccount() {
   const formRef = useRef<FormHandles>(null);
-  const router = Router;
   const [error, setError] = useState('');
   const [alertVisibility, setAlertVisibility] = useState(false);
+  const router = useRouter();
 
   async function handleSubmit(data: Props) {
     try {

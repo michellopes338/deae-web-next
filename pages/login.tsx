@@ -8,7 +8,7 @@ import { api } from "../src/infra/api";
 import { AccessToken, RefreshToken } from '../src/infra/cookies';
 import classNames from "classnames";
 import { IResLogin } from "../src/interface/login.interface";
-import Router from "next/router";
+import { useRouter } from "next/router";
 
 export default function Login() {
   const [validate, setValidate] = useState(false);
@@ -17,7 +17,7 @@ export default function Login() {
   const access_token = useMemo(() => new AccessToken(), []);
   const refresh_token = new RefreshToken();
   const formRef = useRef<FormHandles>(null);
-  const router = Router;
+  const router = useRouter()
 
   useEffect(() => {
     const access_token_value = access_token.getToken()
