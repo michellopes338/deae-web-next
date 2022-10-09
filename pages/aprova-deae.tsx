@@ -48,10 +48,10 @@ export default function Approve() {
         <div key={deae.id} className="card my-3">
           <div className="card-body">
             <h5 className="card-title">Deae</h5>
-            <h6>Desvio</h6>
-            <p>{deae.deviation}</p>
-            <h6>Correção</h6>
-            <p>{deae.adjustment}</p>
+            <h6 className="text-dark">Desvio</h6>
+            <p className="text-dark">{deae.deviation}</p>
+            <h6 className="text-dark">Correção</h6>
+            <p className="text-dark">{deae.adjustment}</p>
           </div>
 
           <div className="row m-2">
