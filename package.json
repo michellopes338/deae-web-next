@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "start:prod": "next build && next start"
   },
   "dependencies": {
     "@unform/core": "^2.1.6",

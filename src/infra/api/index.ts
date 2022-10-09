@@ -7,14 +7,14 @@ const refresh_token = new RefreshToken();
 const router = Router;
 const api = axios.create({
   baseURL: 'https://deae-michel.herokuapp.com/',
-  timeout: 2000,
+  timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
     'Authorization': access_token.getToken() && `Bearer ${access_token.getToken()}`,
   }
 })
 
-async function refreshToken() {
+async function refreshToken(error: any) {
   const refresh_token_value = refresh_token.getToken();
   await api.post('auth/refresh', {}, {
     headers: {
@@ -24,7 +24,10 @@ async function refreshToken() {
     access_token.setToken(res.data.access_token)
     refresh_token.setToken(res.data.refresh_token)
 
-    return res;
+    api.get(error.config.url)
+      .catch((err) => {
+        console.log(err);
+      });
   }).catch(() => {
     access_token.removeToken()
     refresh_token.removeToken()
@@ -39,8 +42,7 @@ api.interceptors.response.use(
   async (err) => {
     const access_token_value = access_token.getToken()
     if (err.response.status === 401 && access_token_value) {
-      const response = await refreshToken()
-      return response;
+      await refreshToken(err);
     }
     if (err.response.status === 401 && !access_token_value) {
       router.replace('/login')

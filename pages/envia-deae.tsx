@@ -1,6 +1,6 @@
 import { FormHandles } from "@unform/core";
 import { Form } from "@unform/web";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useQuery } from "react-query";
 import { Select } from "../src/components/select";
 import Textarea from "../src/components/textarea";
@@ -13,7 +13,6 @@ export default function SendDeae() {
   const [toastMsg, setToasdMsg] = useState('');
   const [toastVisibility, setToastVisibility] = useState(false);
   const formRef = useRef<FormHandles>(null);
-  const toastRef = useRef('');
   const successSend = 'Deae enviado com sucesso\nVocê ja pode enviar o próximo';
 
   async function handleSubmit(data: FormData) {

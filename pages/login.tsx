@@ -12,13 +12,16 @@ import Router from "next/router";
 
 export default function Login() {
   const [validate, setValidate] = useState(false);
+  const [alertVisibility, setAlertVisibility] = useState(false);
+  const [alertMsg, setAlertMsg] = useState('');
   const access_token = useMemo(() => new AccessToken(), []);
   const refresh_token = new RefreshToken();
   const formRef = useRef<FormHandles>(null);
   const router = Router;
 
   useEffect(() => {
-    access_token.getToken() && router.replace('/')
+    const access_token_value = access_token.getToken()
+    if (access_token_value) router.replace('/home')
   }, [access_token, router])
 
   async function handleSubmit(data: FormData) {
@@ -38,11 +41,13 @@ export default function Login() {
           const data = res.data;
           access_token.setToken(data.access_token)
           refresh_token.setToken(data.refresh_token)
+          router.replace('/home')
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
+          setAlertVisibility(true);
+          setAlertMsg('Usuario ou senha incorretos')
         })
-      router.replace('/')
     } catch(err) {
       const validationErrors: any = {};
       if (err instanceof Yup.ValidationError) {
@@ -78,6 +83,12 @@ export default function Login() {
           </span>
         </Form>
       </div>
+      {alertVisibility && (
+        <div className="alert alert-dismissible alert-danger" role="alert" >
+          <div>{alertMsg}</div>
+          <button type="button" className="btn-close" aria-label="Close" onClick={() => setAlertVisibility(false)}></button>
+        </div>
+      )}
     </div>
   )
 }
