@@ -41,12 +41,13 @@ export default function Login() {
           const data = res.data;
           access_token.setToken(data.access_token)
           refresh_token.setToken(data.refresh_token)
-          router.replace('/home')
         })
         .catch((err) => {
           console.log(err);
           setAlertVisibility(true);
           setAlertMsg('Usuario ou senha incorretos')
+        }).finally(() => {
+          router.replace('/home')
         })
     } catch(err) {
       const validationErrors: any = {};
